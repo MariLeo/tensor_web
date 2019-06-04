@@ -1,0 +1,142 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.hdr {
+  background-color: #9CEDCB;
+  color: aliceblue;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+
+
+.hdr-item
+{
+  font-size: 20px;
+  color: black;
+  margin-left: 10px;
+
+}
+
+
+
+.hdr-collapse
+{
+  align-items: center;
+
+}
+
+.container{
+  margin: 20px;
+  align-items: center;
+}
+
+.card{
+  margin: 40px;
+  align-items: center;
+}
+
+.input{
+  margin: 10px;
+  top: 50%;
+  left: 50%;
+}
+
+.navbar-brand{
+  text-decoration-color: blue;
+}
+.success{
+  margin-left: 20%;
+}
+
+
+.Form{
+  padding: 40px;
+}
+
+.auth{
+  display: flex;
+  padding-left: 20%;
+}
+
+.card{
+  padding: 40px;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 480px;
+  font-family: sans-serif;
+  margin: 100px auto;
+  padding: 20px;
+}
+#drop-area.highlight {
+  border-color: purple;
+}
+p {
+  margin-top: 0;
+}
+.my-form {
+  margin-bottom: 10px;
+}
+#gallery {
+  margin-top: 10px;
+}
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.button {
+  display: inline-block;
+  padding: 10px;
+  background: #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.button:hover {
+  background: #ddd;
+}
+#fileElem {
+  display: none;
+}
