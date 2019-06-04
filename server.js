@@ -1,17 +1,28 @@
-
+const cookieParser = require('cookie-parser');
+const user = require('./app/controllers/user.controller.js');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')
 
+const isOnHeroku = process.env.NODE && ~process.env.NODE.indexOf("heroku");
+
 // create express app
 const app = express();
 
-app.use(cors())
-// parse requests of content-type - application/x-www-form-urlencoded
+const path = require('path')
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
-// parse requests of content-type - application/json
+// parse application/json
 app.use(bodyParser.json())
+
+app.use(cookieParser());
+
+app.use(user.authMiddleware);
 
 // Configuring the database
 const dbConfig = require('./config/database.config.js');
@@ -30,14 +41,24 @@ mongoose.connect(dbConfig.url, {
 });
 
 // define a simple route
-app.get('/', (req, res) => {
-    res.json({"message": "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes."});
+app.get('/api/testroute', (req, res) => {
+    res.cookie('test', 'testval');
+    res.json({ "message": "Welcome to Tasks application." });
 });
 
-// Require Notes routes
-require('./app/routes/note.routes.js')(app);
+require('./app/routes/task.routes.js')(app);
+require('./app/routes/user.routes.js')(app);
+
+if (isOnHeroku) {
+    // Anything that doesn't match the above, send back index.html
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname + '/client/build/index.html'))
+    })
+}
+
+app.set('port', (process.env.PORT || 5000));
 
 // listen for requests
-app.listen(5757, () => {
-    console.log("Server is listening on port 5757");
+app.listen(app.get('port'), () => {
+    console.log(`App is running on port ${app.get('port')}`);
 });

@@ -16,7 +16,7 @@
   "author": "callicoder",
   "license": "MIT",
   "dependencies": {
-    "bcrypt": "*",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "cookie-parser": "*",
     "cors": "*",
